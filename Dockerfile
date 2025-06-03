@@ -1,4 +1,4 @@
-FROM node:lts-slim  AS runner
+FROM node:lts-slim AS runner
 
 RUN apt-get update && \
     apt-get install -y jq && \
