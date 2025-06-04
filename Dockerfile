@@ -3,7 +3,7 @@ FROM ocaml/opam:debian-12-ocaml-5.2 AS runner
 ENV PATH="/home/opam/.opam/5.2/bin:${PATH}"
 
 RUN opam update
-RUN opam install dune melange melange-jest
+RUN opam install dune reason melange melange-jest
 
 # Install Node.js and npm (using NodeSource for modern versions)
 USER root
