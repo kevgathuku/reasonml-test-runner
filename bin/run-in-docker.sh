@@ -36,8 +36,7 @@ docker build --rm -t exercism/test-runner .
 # Run the Docker image using the settings mimicking the production environment
 docker run \
     --network none \
-    --read-only \
     --mount type=bind,src="${input_dir}",dst=/solution \
     --mount type=bind,src="${output_dir}",dst=/output \
     --mount type=tmpfs,dst=/tmp \
-    exercism/test-runner "${slug}" /solution /output 
+    exercism/test-runner "${slug}" /solution /output
