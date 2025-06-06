@@ -1,13 +1,9 @@
 FROM node:lts-slim AS runner
 
-ENV OPAMYES=1 \
-    NO_UPDATE_NOTIFIER=true
+ENV OPAMYES=1 NO_UPDATE_NOTIFIER=true
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends jq curl git opam ca-certificates && \
-    apt-get purge --auto-remove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends jq curl git opam ca-certificates
 
 # Initialize OPAM
 RUN opam init --bare --disable-sandboxing --shell-setup && \
@@ -17,7 +13,11 @@ RUN opam init --bare --disable-sandboxing --shell-setup && \
 RUN opam update
 RUN opam install dune reason melange melange-jest
 
-RUN apt-get remove -y curl git ca-certificates
+RUN opam clean && \
+    apt-get purge -y curl git ca-certificates && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/test-runner
 
