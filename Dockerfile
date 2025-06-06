@@ -17,6 +17,8 @@ RUN opam init --bare --disable-sandboxing --shell-setup && \
 RUN opam update
 RUN opam install dune reason melange melange-jest
 
+RUN apt-get remove -y curl git ca-certificates
+
 WORKDIR /opt/test-runner
 
 # Pre-install packages
