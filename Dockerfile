@@ -10,8 +10,7 @@ RUN opam init --bare --disable-sandboxing --shell-setup && \
     opam switch create default 5.3.0 && \
     eval $(opam env --switch=default)
 
-RUN opam update
-RUN opam install dune reason melange melange-jest
+RUN opam update && opam install dune reason melange melange-jest
 
 RUN opam clean && \
     apt-get purge -y curl git ca-certificates && \
