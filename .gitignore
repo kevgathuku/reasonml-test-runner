@@ -3,4 +3,4 @@ tests/**/node_modules/
 tests/**/lib/bs/
 tests/**/*.bs.js
 tests/**/.merlin
-
+tests/**/_build
