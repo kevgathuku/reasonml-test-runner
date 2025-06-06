@@ -36,6 +36,7 @@ pushd "${input_dir}" > /dev/null
 
 cp -r "${root_dir}/node_modules" .
 
+# set -x
 # Run the tests for the provided implementation file and redirect stdout and
 # stderr to capture it
 test_output=$(npm run build 2>&1 && npm run test:ci -- --color 2>&1)
@@ -49,7 +50,7 @@ if [ $exit_code -eq 0 ]; then
     jq -n '{version: 1, status: "pass"}' > ${results_file}
 else
     # Sanitize the output
-    sanitized_test_output=$(printf "%s" "${test_output}" | sed -n '/processTicksAndRejections/d; s/Time:.*$//; /npm ERR/q; p')
+    sanitized_test_output=$(sed -n '/processTicksAndRejections/d; s/Time:.*$//; /npm ERR/q; p' <<< "${test_output}")
     if [[ "${sanitized_test_output}" =~ "--color" ]]; then
         sanitized_test_output=$(printf "${sanitized_test_output}" | sed -n '1,/--color/!p')
     else
