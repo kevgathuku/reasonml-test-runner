@@ -1,24 +1,19 @@
 FROM node:lts-slim AS runner
 
-ENV OPAMYES=1 NO_UPDATE_NOTIFIER=true
+ENV TERM=dumb LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends jq curl git opam ca-certificates
+    apt-get install -y --no-install-recommends jq
 
-# Initialize OPAM
-RUN opam init --bare --disable-sandboxing --shell-setup && \
-    opam switch create default 5.3.0 && \
-    eval $(opam env --switch=default)
+RUN mkdir /esy
+WORKDIR /esy
 
-RUN opam update && opam install dune reason melange melange-jest
+ENV NPM_CONFIG_PREFIX=/esy
+RUN npm install -g --unsafe-perm esy@latest
 
-RUN opam clean && \
-    apt-get purge -y curl git ca-certificates && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+ENV PATH=/esy/bin:$PATH
 
-WORKDIR /opt/test-runner
+WORKDIR /home/node/test-runner
 
 # Pre-install packages
 COPY package.json .
@@ -26,4 +21,4 @@ COPY package-lock.json .
 RUN npm install
 
 COPY . .
-ENTRYPOINT ["/opt/test-runner/bin/run.sh"]
+ENTRYPOINT ["/home/node/test-runner/bin/run.sh"]
