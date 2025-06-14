@@ -2,6 +2,7 @@
   "name": "exercism-reasonml",
   "version": "0.1.0",
   "scripts": {
+    "install": "esy i",
     "build": "esy b dune build",
     "start": "npm run build -- --watch",
     "clean": "esy dune clean",

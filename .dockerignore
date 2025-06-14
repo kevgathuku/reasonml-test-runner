@@ -7,3 +7,7 @@ tests/
 .dockerignore
 Dockerfile
 node_modules/
+_esy/
+*.md
+LICENSE
+.envrc
