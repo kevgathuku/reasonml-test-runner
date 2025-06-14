@@ -1,4 +1,4 @@
 module.exports = {
-  rootDir: "./_build/default/test",
+  rootDir: "./_esy/default/build/default/test",
   testMatch: ["**/*_test.js"],
 };

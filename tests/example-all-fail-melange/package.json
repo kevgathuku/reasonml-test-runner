@@ -2,9 +2,9 @@
   "name": "exercism-reasonml",
   "version": "0.1.0",
   "scripts": {
-    "build": "esy build",
+    "build": "esy b dune build",
     "start": "npm run build -- --watch",
-    "clean": "npm run dune -- clean",
+    "clean": "esy dune clean",
     "format": "esy dune build @fmt --auto-promote",
     "test": "jest --watchAll",
     "test:ci": "jest --ci --bail --no-cache"
