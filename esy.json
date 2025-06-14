@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ocaml": "5.2.0",
+    "@opam/dune": "^3.0.0",
+    "@opam/melange": "^5.1.0",
+    "@opam/reason": "^3.11.0",
+    "@opam/melange-jest": "^0.1.1"
+  }
+}

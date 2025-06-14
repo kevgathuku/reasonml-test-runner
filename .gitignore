@@ -1,3 +1,5 @@
+node_modules/
+_esy/
 tests/**/results.json
 tests/**/node_modules/
 tests/**/lib/bs/
