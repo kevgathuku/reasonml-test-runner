@@ -9,5 +9,4 @@ describe("Leap", () => {
   test("year divisible by 4, not divisible by 100 in leap year", () =>
     expect(isLeapYear(1996)) |> toBe(true)
   );
-})
-
+});

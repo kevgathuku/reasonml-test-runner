@@ -1,4 +1,3 @@
-let isLeapYear = (year) => {
+let isLeapYear = year => {
   year mod 2 == 1;
-}
-
+};
